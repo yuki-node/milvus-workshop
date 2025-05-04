@@ -34,7 +34,7 @@
 
 *   **1.2 Milvus 安装实战**
     *   介绍不同的安装方式 ( Docker Compose, Kubernetes, Cloud Services )。
-    *   **实操：使用 Docker Compose 本地快速安装 Milvus Standalone **
+    *   **实操：使用 Docker Compose 本地快速安装 Milvus Standalone**
         *   下载配置文件 (`milvus-standalone.yaml` 或 `milvus-cluster.yaml`)。
         *   使用 `docker compose up -d` 命令启动。
         *   解释 Docker Compose 文件中的关键服务和端口。
