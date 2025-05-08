@@ -63,7 +63,7 @@
 
 **第二部分：Milvus 基础操作 - 使用 Python SDK**
 
-*   **2.1 连接 Milvus 并管理 Collections**
+*   [**2.1 连接 Milvus 并管理 Collections**](./ch2/ch2_1.ipynb)
     *   **概念：Collection (集合)** 
     *   **实操：定义 Collection Schema (结构)。**
         *   Field 的概念 (主键 Field, Vector Field, Scalar Field)。
