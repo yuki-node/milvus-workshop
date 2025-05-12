@@ -75,7 +75,7 @@
     *   **实操：加载 (Load) 和释放 (Release) Collection。** (解释 Load 的重要性 - 数据加载到内存/显存供查询)
     *   **Hands-on Exercise 1:** 创建一个简单的 Collection，定义几个 Scalar Field 和一个 Vector Field。
 
-*   **2.2 数据插入与管理**
+*   [**2.2 数据插入与管理**](./ch2/ch2_2.ipynb)
     *   **概念：Entity (实体)**。
     *   **概念：Partition (分区)** 。
     *   **实操：准备数据进行插入。** (使用 Python 生成模拟数据或加载小样本数据集)。
@@ -132,7 +132,7 @@
 *   **3.2 Milvus 在 RAG (检索增强生成) 中的应用**
     *   **RAG 流程回顾：** 文档加载 -> 分块 (Chunking) -> 向量化 (Embedding) -> 存储 -> 检索 -> 生成。
     *   **Milvus 在 RAG 中的角色：** 作为外部知识库，存储文本块及其向量，快速检索相关文本块。
-    *   **案例演示/代码讲解：** 构建一个简化的 RAG Demo。[https://milvus.io/docs/build-rag-with-milvus.md]
+    *   **案例演示/代码讲解：** 构建一个简化的 RAG Demo。[参考：https://milvus.io/docs/build-rag-with-milvus.md]
         *   使用 LangChain 进行文档处理和向量化 (使用 Sentence Transformers, OpenAI embeddings 等)。
         *   将文本块和元数据向量化之后 插入 Milvus。
         *   接收用户问题，向量化。
@@ -147,7 +147,7 @@
         *   **External Knowledge Base:** 存储 Agent 需要查询的外部信息 (类似于 RAG)。
         *   **Memory:** 存储 Agent 的对话历史、学习到的经验、规划步骤等 (以向量形式)。
     *   **案例演示/代码讲解：** 简述一个 Agent 如何利用 Milvus 作为工具或记忆。
-        *   使用 LangGraph 实现一个 Agent [参考 https://github.com/milvus-io/bootcamp/blob/master/bootcamp/RAG/advanced_rag/langgraph-graphrag-agent-local.ipynb]
+        *   使用 LangGraph 实现一个 Agent [参考: https://github.com/milvus-io/bootcamp/blob/master/bootcamp/RAG/advanced_rag/langgraph-graphrag-agent-local.ipynb]
         *   Agent 识别需要外部信息 -> 将查询转化为向量 -> 在 Milvus 中搜索相关知识 -> 获取信息 -> 继续规划。
         *   Agent 存储对话片段向量 -> 在新对话开始时搜索相似历史 -> 召回相关记忆。
     *   讨论：Milvus 如何赋能 Agent 更智能地执行任务。
