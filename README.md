@@ -100,7 +100,7 @@
     *   **实操：查看索引状态。**
     *   **Hands-on Exercise 3:** 为你的 Collection 中的 Vector Field 创建一个 HNSW 索引。
 
-*   **2.4 向量相似度搜索 (Search) 与混合查询 (Query/Hybrid Search)**
+*   [**2.4 向量相似度搜索 (Search) 与混合查询 (Query/Hybrid Search)**](./ch2/ch2_4.ipynb)
     *   **概念：向量搜索 (Search)。** - 根据输入的向量查找最相似的 Top K 个向量。
     *   **实操：执行向量搜索。**
         *   准备搜索向量。
