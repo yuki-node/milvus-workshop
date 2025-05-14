@@ -118,16 +118,15 @@
 
 **第三部分：Milvus 应用实践 - RAG, Agent 与图片搜索案例**
 
-*   **3.1 Milvus 在图片搜索中的应用**
+*   [**3.1 Milvus 在图片搜索中的应用**](./ch3/ch3_1.ipynb)
     *   **流程：** 图片加载 -> 图片向量化 (Embedding) -> 存储 -> 检索。
     *   **Milvus 在图片搜索中的角色：** 存储图片特征向量，实现以图搜图 (Image-to-Image Search) 或以文搜图 (Text-to-Image Search)。
-    *   **案例演示/代码讲解：** 构建一个简单的图片搜索 Demo。[参考：https://milvus.io/docs/image_similarity_search.md]
-        *   使用预训练模型 (如 CLIP, ResNet + PCA 等) 对图片数据集进行向量化。
+    *   **案例演示/代码讲解：** 构建一个简单的图片搜索 Demo。
+        *   使用预训练模型 (如 CLIP, ResNet等) 对图片数据集进行向量化。
         *   将图片路径/ID 和向量插入 Milvus。
         *   输入一张图片或一段描述文字，通过同一模型生成向量。
         *   在 Milvus 中进行向量搜索，返回相似图片的 ID 或路径。
-    *   讨论：跨模态搜索 (CLIP) 的原理，不同图片 Embedding 模型的选择。
-    *   **Hands-on Exercise 1:** 实操对少量图片进行向量化并插入 Milvus，然后进行搜索。
+    *   **Hands-on Exercise 1:** 实操对少量图片通过跨模态搜索 (CLIP)进行搜索。
 
 *   **3.2 Milvus 在 RAG (检索增强生成) 中的应用**
     *   **RAG 流程回顾：** 文档加载 -> 分块 (Chunking) -> 向量化 (Embedding) -> 存储 -> 检索 -> 生成。
