@@ -32,7 +32,7 @@
         *   Partition (分区)：Collection 内的数据逻辑分组 (提高查询效率), 优化数据管理和查询性能。
     *   Milvus部署：Lite vs Standalone vs Cluster 模式对比 (Workshop 使用 Standalone)
 
-*   **1.2 Milvus 安装实战**
+*   [**1.2 Milvus 安装实战**](./ch1/ch1_2.ipynb)
     *   介绍不同的安装方式 ( Docker Compose, Kubernetes, Cloud Services )。
     *   **实操：使用 Docker Compose 本地快速安装 Milvus Standalone**
         *   下载配置文件 (`milvus-standalone.yaml` 或 `milvus-cluster.yaml`)。
