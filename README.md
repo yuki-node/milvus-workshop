@@ -45,7 +45,7 @@
         *   介绍 WebUI：图形化管理工具。
         *   介绍 Attu：Milvus 的可视化管理工具（安装与基本使用）。
 
-*   **1.3 Milvus 核心架构与组件解析**
+*   **1.3 Milvus 核心架构与组件解析** [TODO: following milvus 2.6 architecture]
     *   Milvus 的分布式架构概览 (解耦设计)。
     *   核心组件功能详解 (用通俗易懂的比喻)：
         *   **Proxy:** 请求入口，负载均衡。
