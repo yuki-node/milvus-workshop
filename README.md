@@ -140,13 +140,13 @@
     *   讨论：如何优化 RAG 中的检索效果 (Chunk 大小、embedding 模型选择、混合搜索的使用)。
     *   **Hands-on Exercise 2:** 尝试修改搜索参数，观察检索结果的变化。
 
-*   **3.3 Milvus 在 AI Agent 中的应用**
+*   [**3.3 Milvus 在 AI Agent 中的应用**](./ch3/ch3_3.ipynb)
     *   **AI Agent 架构概览：** Planning, Memory, Tools。
     *   **Milvus 在 Agent 中的角色：**
         *   **External Knowledge Base:** 存储 Agent 需要查询的外部信息 (类似于 RAG)。
         *   **Memory:** 存储 Agent 的对话历史、学习到的经验、规划步骤等 (以向量形式)。
     *   **案例演示/代码讲解：** 简述一个 Agent 如何利用 Milvus 作为工具或记忆。
-        *   使用 LangGraph 实现一个 Agent [参考: https://github.com/milvus-io/bootcamp/blob/master/bootcamp/RAG/advanced_rag/langgraph-graphrag-agent-local.ipynb]
+        *   使用 LangGraph 实现一个 Agent
         *   Agent 识别需要外部信息 -> 将查询转化为向量 -> 在 Milvus 中搜索相关知识 -> 获取信息 -> 继续规划。
         *   Agent 存储对话片段向量 -> 在新对话开始时搜索相似历史 -> 召回相关记忆。
     *   讨论：Milvus 如何赋能 Agent 更智能地执行任务。
