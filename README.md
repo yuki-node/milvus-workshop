@@ -116,7 +116,7 @@
 
 ---
 
-**第三部分：Milvus 应用实践 - RAG, Agent 与图片搜索案例**
+**第三部分：Milvus 应用实践 - 图片搜索，RAG 与 Agent 案例**
 
 *   [**3.1 Milvus 在图片搜索中的应用**](./ch3/ch3_1.ipynb)
     *   **流程：** 图片加载 -> 图片向量化 (Embedding) -> 存储 -> 检索。
@@ -131,12 +131,12 @@
 *   **3.2 Milvus 在 RAG (检索增强生成) 中的应用**
     *   **RAG 流程回顾：** 文档加载 -> 分块 (Chunking) -> 向量化 (Embedding) -> 存储 -> 检索 -> 生成。
     *   **Milvus 在 RAG 中的角色：** 作为外部知识库，存储文本块及其向量，快速检索相关文本块。
-    *   **案例演示/代码讲解：** 构建一个简化的 RAG Demo。[参考：https://milvus.io/docs/build-rag-with-milvus.md]
+    *   **案例演示/代码讲解：** 构建一个简化的 RAG Demo。
         *   使用 LangChain 进行文档处理和向量化 (使用 Sentence Transformers, OpenAI embeddings 等)。
         *   将文本块和元数据向量化之后 插入 Milvus。
         *   接收用户问题，向量化。
         *   使用 Milvus 进行向量搜索，检索相关的文本块。
-        *   将检索到的文本块作为上下文喂给 LLM 生成回答 。
+        *   将检索到的文本块作为上下文喂给 LLM 生成回答
     *   讨论：如何优化 RAG 中的检索效果 (Chunk 大小、embedding 模型选择、混合搜索的使用)。
     *   **Hands-on Exercise 2:** 尝试修改搜索参数，观察检索结果的变化。
 
@@ -152,9 +152,8 @@
     *   讨论：Milvus 如何赋能 Agent 更智能地执行任务。
     *   **Hands-on Exercise 3:** 实操AI Agent Demo。
 
-*   **3.4 案例综合与未来展望**
-    *   回顾 RAG, Agent, 图片搜索等案例中 Milvus 基础操作的应用。
-    *   Milvus 的进阶特性简述 (Consistency Level, RBAC 等)。
+*   [**3.4 Milvus周边功能与未来展望**](./ch3/ch3_4.ipynb)
+    *   Milvus 周边工具简述 (数据同步VTS， Milvus CDC， Milvus Backup，DeepResearch，MCP)。
     *   Milvus 在更多领域的应用前景 (推荐系统、异常检测等)。
     *   学习资源推荐 (官方文档、社区、Github)。
 
