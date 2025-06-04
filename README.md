@@ -10,7 +10,7 @@
 
 **环境准备 (参与者需提前完成或Workshop开始时提供指引):**
 *   安装 Docker 和 Docker Compose。
-*   安装 Python 3.10+。
+*   安装 Python 3.9+。
 *   安装所需的 Python 库：`pymilvus`, `torch` (或 `transformers` 等用于生成向量)。
 *   准备一个可用的代码编辑器 (VS Code, PyCharm 等)。
 
