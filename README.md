@@ -19,8 +19,8 @@
 **第一部分：Milvus 初探 - 安装、概念与核心组件**
 
 *   [**1.1 向量数据库Milvus概览**](./ch1/ch1_1.ipynb)
-    *   什么是向量嵌入 (Vector Embedding)？ (简要回顾，强调其在 AI 中的作用)
-    *   为什么需要向量数据库？(对比传统数据库，引出 ANN 搜索需求)
+    *   什么是向量嵌入 (Vector Embedding)？ 
+    *   为什么需要向量数据库？(对比传统数据库，ANN 搜索需求)
     *   Milvus 是什么？(定位、核心特性、优势、社区概览)
     *   Milvus 核心概念解析
         *   Collection (集合)：类比关系型数据库的表。
@@ -45,7 +45,7 @@
         *   介绍 WebUI：图形化管理工具。
         *   介绍 Attu：Milvus 的可视化管理工具（安装与基本使用）。
 
-*   [**1.3 Milvus 核心架构与组件解析**](./ch1/ch1_3.ipynb) [TODO: following milvus 2.6 architecture]
+*   [**1.3 Milvus 核心架构与组件解析**](./ch1/ch1_3.ipynb) 
     *   Milvus 的分布式架构概览 (解耦设计)。
     *   核心组件功能详解 (用通俗易懂的比喻)：
         *   **Proxy:** 请求入口，负载均衡。
@@ -56,7 +56,8 @@
         *   **Data Node:** 写入节点，处理数据写入和持久化。
         *   **Query Node:** 查询节点，加载数据和索引，执行搜索/查询。
         *   **Index Node:** 索引构建节点，执行索引构建任务。
-    *   元数据服务 ( Meta Store - Etcd )、消息队列 ( Message Queue - Kafka/Pulsar )、对象存储 ( Object Storage - MinIO/S3 ) 在架构中的作用 (简要说明)。
+    *   Milvus 2.6 在架构中的优化 
+        *   **Streaming Node:** 实时数据流处理。
     *   **Q&A & 小结**
 
 ---
@@ -72,17 +73,17 @@
         *   如何定义 Vector Field (维度 Dimension)。
         *   如何定义自动ID。
     *   **实操：创建、删除、查看 Collection。**
-    *   **实操：加载 (Load) 和释放 (Release) Collection。** (解释 Load 的重要性 - 数据加载到内存/显存供查询)
+    *   **实操：加载 (Load) 和释放 (Release) Collection。** 
     *   **Hands-on Exercise 1:** 创建一个简单的 Collection，定义几个 Scalar Field 和一个 Vector Field。
 
 *   [**2.2 数据插入与管理**](./ch2/ch2_2.ipynb)
     *   **概念：Entity (实体)**。
     *   **概念：Partition (分区)** 。
-    *   **实操：准备数据进行插入。** (使用 Python 生成模拟数据或加载小样本数据集)。
+    *   **实操：准备数据进行插入。** 。
     *   **实操：将数据插入 Collection (或指定 Partition)。**
         *   解释数据格式要求。
         *   批量插入的技巧。
-    *   **实操：删除数据 (按 ID 或过滤条件)。** (解释删除是逻辑删除，需要 Compaction)
+    *   **实操：删除数据 (按 ID 或过滤条件)。** 
     *   **Hands-on Exercise 2:** 插入一批模拟数据到之前创建的 Collection 中，并尝试删除其中几条。
 
 *   [**2.3 索引的构建与管理**](./ch2/ch2_3.ipynb)
@@ -106,7 +107,6 @@
         *   准备搜索向量。
         *   设置搜索参数 (如 `anns_field`, `param`, `limit`, `output_fields`)。
         *   解释搜索结果 (`id`, `distance`, `fields`)。
-    *   解释搜索参数 (如 `ef` for HNSW, `nprobe` for IVF)。它们如何影响搜索性能和召回率 (Recall)。
     *   **概念：数据查询 (Query)。** - 根据 Scalar Field 的过滤条件查找数据 (类似于 SQL 的 WHERE)。
     *   **实操：执行数据查询。** (使用表达式过滤数据)
     *   **概念：混合查询 (Hybrid Search)。** - 结合向量相似度和 Scalar 过滤条件进行搜索。
