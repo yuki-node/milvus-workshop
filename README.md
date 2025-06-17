@@ -108,9 +108,9 @@
         *   设置搜索参数 (如 `anns_field`, `param`, `limit`, `output_fields`)。
         *   解释搜索结果 (`id`, `distance`, `fields`)。
     *   **概念：数据查询 (Query)。** - 根据 Scalar Field 的过滤条件查找数据 (类似于 SQL 的 WHERE)。
-    *   **实操：执行数据查询。** (使用表达式过滤数据)
-    *   **概念：混合查询 (Hybrid Search)。** - 结合向量相似度和 Scalar 过滤条件进行搜索。
-    *   **实操：执行混合查询。** (在 Search API 中使用 `expr` 参数)
+    *   **实操：执行数据查询。** 
+    *   **概念：混合查询 (Hybrid Search)。** - 结合向量相似度和 Sparse-BM25 过滤条件进行搜索。
+    *   **实操：执行混合查询。** 
     *   **Hands-on Exercise 4:** 执行一次简单的向量搜索，一次基于 Scalar Field 的查询，一次混合查询。
     *   **Q&A & 小结**
 
