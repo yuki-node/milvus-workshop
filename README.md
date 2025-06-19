@@ -11,15 +11,15 @@
 **环境准备 (参与者需提前完成或Workshop开始时提供指引):**
 *   安装 Docker 和 Docker Compose。
 *   安装 Python 3.9+。
-*   安装所需的 Python 库：`pymilvus`, `torch` (或 `transformers` 等用于生成向量)。
-*   准备一个可用的代码编辑器 (VS Code, PyCharm 等)。
+*   安装所需的 Python 库：`pymilvus`, `torch` (或 `transformers` 等用于生成向量), `langchain`, `langgraph`等。
+*   安装 Jupyter Notebook 或 JupyterLab。
 
 ---
 
 **第一部分：Milvus 初探 - 安装、概念与核心组件**
 
 *   [**1.1 向量数据库Milvus概览**](./ch1/ch1_1.ipynb)
-    *   什么是向量嵌入 (Vector Embedding)？ 
+    *   什么是向量嵌入 (Vector Embedding)
     *   为什么需要向量数据库？(对比传统数据库，ANN 搜索需求)
     *   Milvus 是什么？(定位、核心特性、优势、社区概览)
     *   Milvus 核心概念解析
@@ -47,7 +47,7 @@
 
 *   [**1.3 Milvus 核心架构与组件解析**](./ch1/ch1_3.ipynb) 
     *   Milvus 的分布式架构概览 (解耦设计)。
-    *   核心组件功能详解 (用通俗易懂的比喻)：
+    *   核心组件功能详解：
         *   **Proxy:** 请求入口，负载均衡。
         *   **Root Coord:** 集群大脑，管理拓扑和任务。
         *   **Data Coord:** 数据写入协调者，管理数据段。
@@ -87,7 +87,7 @@
     *   **Hands-on Exercise 2:** 插入一批模拟数据到之前创建的 Collection 中，并尝试删除其中几条。
 
 *   [**2.3 索引的构建与管理**](./ch2/ch2_3.ipynb)
-    *   **概念：索引 (Index)** - 加速向量相似度搜索的关键。
+    *   **概念：索引 (Index)** 
     *   **核心：近似最近邻搜索 ( Annoyingly Near Neighbor Search, ANNS )。** 
     *   介绍常见的向量索引类型及其适用场景 (简要)：
         *   **FLAT:** 精确但慢。
@@ -95,19 +95,19 @@
         *   **IVF_SQ8:** 聚类 + 量化 (压缩)。
         *   **IVF_PQ:** 聚类 + 乘积量化。
         *   **HNSW:** 基于图的索引 (高性能，常用)。
-    *   介绍距离度量 ( Distance Metrics ): Euclidean distance (L2), Inner Product (IP), Cosine Similarity。如何选择？
+    *   介绍距离度量 ( Distance Metrics ): Euclidean distance (L2), Inner Product (IP), Cosine Similarity。
     *   **实操：为 Vector Field 创建索引。**
         *   选择索引类型和参数 (如 `nlist` for IVF, `M`, `efConstruction` for HNSW)。
     *   **实操：查看索引状态。**
     *   **Hands-on Exercise 3:** 为你的 Collection 中的 Vector Field 创建一个 HNSW 索引。
 
 *   [**2.4 向量相似度搜索 (Search) 与混合查询 (Query/Hybrid Search)**](./ch2/ch2_4.ipynb)
-    *   **概念：向量搜索 (Search)。** - 根据输入的向量查找最相似的 Top K 个向量。
+    *   **概念：向量搜索 (Search)。**
     *   **实操：执行向量搜索。**
         *   准备搜索向量。
         *   设置搜索参数 (如 `anns_field`, `param`, `limit`, `output_fields`)。
         *   解释搜索结果 (`id`, `distance`, `fields`)。
-    *   **概念：数据查询 (Query)。** - 根据 Scalar Field 的过滤条件查找数据 (类似于 SQL 的 WHERE)。
+    *   **概念：数据查询 (Query)。** 
     *   **实操：执行数据查询。** 
     *   **概念：混合查询 (Hybrid Search)。** - 结合向量相似度和 Sparse-BM25 过滤条件进行搜索。
     *   **实操：执行混合查询。** 
@@ -121,7 +121,7 @@
 *   [**3.1 Milvus 在图片搜索中的应用**](./ch3/ch3_1.ipynb)
     *   **流程：** 图片加载 -> 图片向量化 (Embedding) -> 存储 -> 检索。
     *   **Milvus 在图片搜索中的角色：** 存储图片特征向量，实现以图搜图 (Image-to-Image Search) 或以文搜图 (Text-to-Image Search)。
-    *   **案例演示/代码讲解：** 构建一个简单的图片搜索 Demo。
+    *   **案例演示/代码讲解：** 
         *   使用预训练模型 (如 CLIP, ResNet等) 对图片数据集进行向量化。
         *   将图片路径/ID 和向量插入 Milvus。
         *   输入一张图片或一段描述文字，通过同一模型生成向量。
@@ -131,7 +131,7 @@
 *   [**3.2 Milvus 在 RAG (检索增强生成) 中的应用**](./ch3/ch3_2.ipynb)
     *   **RAG 流程回顾：** 文档加载 -> 分块 (Chunking) -> 向量化 (Embedding) -> 存储 -> 检索 -> 生成。
     *   **Milvus 在 RAG 中的角色：** 作为外部知识库，存储文本块及其向量，快速检索相关文本块。
-    *   **案例演示/代码讲解：** 构建一个简化的 RAG Demo。
+    *   **案例演示/代码讲解：** 
         *   使用 LangChain 进行文档处理和向量化 (使用 Sentence Transformers, OpenAI embeddings 等)。
         *   将文本块和元数据向量化之后 插入 Milvus。
         *   接收用户问题，向量化。
@@ -145,7 +145,7 @@
     *   **Milvus 在 Agent 中的角色：**
         *   **External Knowledge Base:** 存储 Agent 需要查询的外部信息 (类似于 RAG)。
         *   **Memory:** 存储 Agent 的对话历史、学习到的经验、规划步骤等 (以向量形式)。
-    *   **案例演示/代码讲解：** 简述一个 Agent 如何利用 Milvus 作为工具或记忆。
+    *   **案例演示/代码讲解：** 
         *   使用 LangGraph 实现一个 Agent
         *   Agent 识别需要外部信息 -> 将查询转化为向量 -> 在 Milvus 中搜索相关知识 -> 获取信息 -> 继续规划。
         *   Agent 存储对话片段向量 -> 在新对话开始时搜索相似历史 -> 召回相关记忆。
