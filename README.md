@@ -152,7 +152,7 @@
     *   讨论：Milvus 如何赋能 Agent 更智能地执行任务。
     *   **Hands-on Exercise 3:** 实操AI Agent Demo。
 
-*   [**3.4 Milvus周边功能与未来展望**](./ch3/ch3_4.ipynb)
+*   [**3.4 Milvus周边功能一览**](./ch3/ch3_4.ipynb)
     *   Milvus 周边工具简述 (数据同步VTS， Milvus CDC， Milvus Backup，VectorDBBench, DeepSearcher，MCP)。
     *   Milvus 在更多领域的应用前景 (推荐系统、异常检测等)。
     *   学习资源推荐 (官方文档、社区、Github)。
