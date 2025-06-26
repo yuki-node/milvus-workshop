@@ -34,7 +34,11 @@
 
 *   [**1.2 Milvus 安装实战**](./ch1/ch1_2.ipynb)
     *   介绍不同的安装方式 ( Docker Compose, Kubernetes, Cloud Services )。
-    *   **实操：使用 Docker Compose 本地快速安装 Milvus Standalone**
+    *   **实操：Zilliz Cloud试用版** 【TODO】
+        *   注册 Zilliz Cloud 账号。
+        *   创建 Milvus 实例，选择 Standalone 模式。
+        *   连接 Milvus 实例 (使用 Python SDK 或 Milvus CLI)。
+    *   **实操：使用 Docker Compose 本地快速安装 Milvus Standalone （环境允许的前提）**
         *   下载配置文件 (`milvus-standalone.yaml` 或 `milvus-cluster.yaml`)。
         *   使用 `docker compose up -d` 命令启动。
         *   解释 Docker Compose 文件中的关键服务和端口。
@@ -139,6 +143,7 @@
         *   将检索到的文本块作为上下文喂给 LLM 生成回答
     *   讨论：如何优化 RAG 中的检索效果 (Chunk 大小、embedding 模型选择、混合搜索的使用)。
     *   **Hands-on Exercise 2:** 尝试修改搜索参数，观察检索结果的变化。
+    * 【TODO】: 添加更多的 RAG案例 或者 RAG best practice
 
 *   [**3.3 Milvus 在 AI Agent 中的应用**](./ch3/ch3_3.ipynb)
     *   **AI Agent 架构概览：** Planning, Memory, Tools。
@@ -156,6 +161,14 @@
     *   Milvus 周边工具简述 (数据同步VTS， Milvus CDC， Milvus Backup，VectorDBBench, DeepSearcher，MCP)。
     *   Milvus 在更多领域的应用前景 (推荐系统、异常检测等)。
     *   学习资源推荐 (官方文档、社区、Github)。
+
+** 第四部分：Milvus 进阶 【TODO】**
+
+*   [**安装部署Milvus监控运维**] 
+*   [**运维监控 vdb bench， birdwatcher**] 
+*   [**Milvus调优**] 
+
+** Misc: 转为 colab，方便线上运行 [TODO]**
 
 ----
 
