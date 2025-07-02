@@ -162,13 +162,12 @@
     *   Milvus 在更多领域的应用前景 (推荐系统、异常检测等)。
     *   学习资源推荐 (官方文档、社区、Github)。
 
-** 第四部分：Milvus 进阶 【TODO】**
+**第四部分：Milvus 进阶 【TODO】**
 
-*   [**安装部署Milvus监控运维**] 
-*   [**运维监控 vdb bench， birdwatcher**] 
-*   [**Milvus调优**] 
+*   [安装部署Milvus监控运维] 
+*   [运维监控 vdb bench， birdwatcher] 
+*   [Milvus调优] 
 
-** Misc: 转为 colab，方便线上运行 [TODO]**
 
 ----
 
