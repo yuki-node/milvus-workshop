@@ -11,6 +11,8 @@
    - 国内站点：https://zilliz.com.cn/
    - 海外站点：https://zilliz.com/
 
+我们本次实验使用的是国内站点，部署在阿里云，这样从我们访问延迟更小一些。
+
    ![a508309b90c710ffd1d9e998626c47f9](https://raw.githubusercontent.com/cloudsmithy/picgo-imh/master/a508309b90c710ffd1d9e998626c47f9.png)
 
 2. 选择 **手机号码** 或 **邮箱** 登录/注册。
@@ -18,13 +20,13 @@
    ![image-20250626212403361](https://raw.githubusercontent.com/cloudsmithy/picgo-imh/master/image-20250626212403361.png)
 
 3. 进入控制台首页后，点击 **Create Cluster** 按钮。
-    ![起始页面](https://raw.githubusercontent.com/cloudsmithy/picgo-imh/master/d712d4c4fd8f2546dab4426c68bf806f.png)
+   ![起始页面](https://raw.githubusercontent.com/cloudsmithy/picgo-imh/master/d712d4c4fd8f2546dab4426c68bf806f.png)
 
 4. 在弹窗中选择 **Free Tier**（免费套餐），数据中心默认为 **阿里云 · 杭州**。
-    ![选择免费集群](https://raw.githubusercontent.com/cloudsmithy/picgo-imh/master/25626960ddcd05d12117aff485eb2487.png)
+   ![选择免费集群](https://raw.githubusercontent.com/cloudsmithy/picgo-imh/master/25626960ddcd05d12117aff485eb2487.png)
 
 5. 等待几分钟，集群创建完成后会显示 **Endpoint URI、API Token、Cluster ID** 等信息，请妥善保存。
-    ![集群信息](https://raw.githubusercontent.com/cloudsmithy/picgo-imh/master/3d606a5a0a797d7332bbb3efd86fd8c4.png)
+   ![集群信息](https://raw.githubusercontent.com/cloudsmithy/picgo-imh/master/3d606a5a0a797d7332bbb3efd86fd8c4.png)
 
 6. 运行中
 
@@ -32,18 +34,69 @@
 
 ------
 
-## 二、准备本地 Python 环境
+## 二、连接
+
+安装milvus-cli：
+
+```
+pip install uv
+uv pip install milvus-cli
+```
+
+使用milvus-cli 连接
+
+```bash
+milvus_cli                                                                                                         (base) 11:38:21
 
 
 
-新建虚拟机环境
+  __  __ _ _                    ____ _     ___
+ |  \/  (_) |_   ___   _ ___   / ___| |   |_ _|
+ | |\/| | | \ \ / / | | / __| | |   | |    | |
+ | |  | | | |\ V /| |_| \__ \ | |___| |___ | |
+ |_|  |_|_|_| \_/  \__,_|___/  \____|_____|___|
+
+Milvus cli version: 1.0.2
+Pymilvus version: 2.5.3
+
+Learn more: https://github.com/zilliztech/milvus_cli.
+
+
+milvus_cli > connect -uri https://in03-d7b5690fee7bcbf.serverless.ali-cn-hangzhou.cloud.zilliz.com.cn -t 88b738ee492b2ad88d69c166ee587825d546b049dab3a5d8767733a636efec52a62e96b283ab90c24146d5a311696dacd9499fc1
+Connect Milvus successfully.
++---------+---------+
+| Address |         |
+|  Alias  | default |
++---------+---------+
+milvus_cli > list databases
++--------------------+
+|      db_name       |
++--------------------+
+| db_d7b5690fee7bcbf |
++--------------------+
+```
+
+
+
+###  创建虚拟环境（缺少 3.12 时 uv 会自动下载）
+
+```
+uv venv milvus-py --python 3.12
+
+# 激活环境
+source milvus-py/bin/activate      # macOS / Linux
+# .\milvus-py\Scripts\activate      # Windows PowerShell
+
+```
+
+如果你使用的是 conda 也可以：
 
 ```bash
 conda create -n milvus-py python==3.12 -y
 conda activate milvus-py
 ```
 
-## 
+
 
 1. **克隆仓库**
 
@@ -61,7 +114,11 @@ pip3 install pymilvus==2.5.3
 
 ```bash
 cd cloud-vectordb-examples/python
+
+
 ```
+
+需要注意的是，在开源版本的 Milvus 中，端口号是 ，而在Zilliz cloud 上，端口上是 443.
 
 ------
 
@@ -204,4 +261,57 @@ Search 4 latency: 0.0687 seconds
 
 ------
 
-> 通过 Zilliz Cloud，我们可以在几分钟内获得一套托管版 Milvus 服务，免去本地运维与资源成本，非常适合作为学习、原型开发或小型应用的向量数据库后端。祝大家玩得开心！
+
+
+然后我们就可以通过控制台来查看这个新建的索引和数据了。
+
+
+
+![image-20250702113618025](https://raw.githubusercontent.com/cloudsmithy/picgo-imh/master/image-20250702113618025.png)
+
+
+
+除此之外，zilliz 还提供了restapi ，这样我们就可以通过请求 HTTP 来完成数据检索了。
+
+```bash
+curl --request POST \
+  --url https://in03-d7b5690fee7bcbf.serverless.ali-cn-hangzhou.cloud.zilliz.com.cn/v2/vectordb/collections/list \
+  --header 'accept: application/json' \
+  --header 'authorization: Bearer <api-key>' \
+  --data '{}'
+```
+
+
+
+Python 版本的如下，需要我们把api-key 作为 bear token 传到请求头里。
+
+```python
+import requests
+
+url = "https://in03-d7b5690fee7bcbf.serverless.ali-cn-hangzhou.cloud.zilliz.com.cn/v2/vectordb/collections/list"
+
+payload = "{}"
+headers = {
+  'Authorization': 'Bearer <api-key>'
+}
+
+response = requests.request("POST", url, headers=headers, data=payload)
+
+print(response.text)
+```
+
+
+
+同样我们再 Postman 上也可以进行测试，需要注意的是，即使请求体是空的，那么也需要使用 {} 来占位。
+
+![image-20250702112141165](https://raw.githubusercontent.com/cloudsmithy/picgo-imh/master/image-20250702112141165.png)
+
+
+
+在左侧的api-playground 中，我们可以看到更多的 API 操作，同时还可以直接在浏览器上发送请求。
+
+![image-20250702113040640](https://raw.githubusercontent.com/cloudsmithy/picgo-imh/master/image-20250702113040640.png)
+
+
+
+通过 Zilliz Cloud，我们可以在几分钟内获得一套托管版 Milvus 服务，免去本地运维与资源成本，非常适合作为学习、原型开发或小型应用的向量数据库后端。祝大家玩得开心！
