@@ -34,9 +34,9 @@
 
 *   [**1.2 Milvus 安装实战**](./ch1/ch1_2.ipynb)
     *   介绍不同的安装方式 ( Docker Compose, Kubernetes, Cloud Services )。
-    *   **实操：Zilliz Cloud试用版** 【TODO】
+    *   **实操：Zilliz Cloud试用版** 
         *   注册 Zilliz Cloud 账号。
-        *   创建 Milvus 实例，选择 Standalone 模式。
+        *   创建 Milvus 实例。
         *   连接 Milvus 实例 (使用 Python SDK 或 Milvus CLI)。
     *   **实操：使用 Docker Compose 本地快速安装 Milvus Standalone （环境允许的前提）**
         *   下载配置文件 (`milvus-standalone.yaml` 或 `milvus-cluster.yaml`)。
@@ -161,6 +161,8 @@
     *   Milvus 周边工具简述 (数据同步VTS， Milvus CDC， Milvus Backup，VectorDBBench, DeepSearcher，MCP)。
     *   Milvus 在更多领域的应用前景 (推荐系统、异常检测等)。
     *   学习资源推荐 (官方文档、社区、Github)。
+
+----------
 
 **第四部分：Milvus 进阶 【TODO】**
 
