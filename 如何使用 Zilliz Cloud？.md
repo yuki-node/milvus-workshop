@@ -11,7 +11,7 @@
    - 国内站点：https://zilliz.com.cn/
    - 海外站点：https://zilliz.com/
 
-我们本次实验使用的是国内站点，部署在阿里云，这样从我们访问延迟更小一些。
+我们本次实验使用的是国内站点，部署在阿里云，目前可以免费使用。
 
    ![a508309b90c710ffd1d9e998626c47f9](https://raw.githubusercontent.com/cloudsmithy/picgo-imh/master/a508309b90c710ffd1d9e998626c47f9.png)
 
@@ -43,10 +43,10 @@ pip install uv
 uv pip install milvus-cli
 ```
 
-使用milvus-cli 连接
+终端执行 milvus_cli，进入交互式 CLI
 
 ```bash
-milvus_cli                                                                                                         (base) 11:38:21
+milvus_cli                                                                                                         
 
 
 
@@ -118,7 +118,7 @@ cd cloud-vectordb-examples/python
 
 ```
 
-需要注意的是，在开源版本的 Milvus 中，端口号是 ，而在Zilliz cloud 上，端口上是 443.
+需要注意的是，在开源版本的 Milvus 中，端口号是9530 / 9091 ，而在Zilliz cloud 上，端口上是 443.
 
 ------
 
@@ -212,7 +212,7 @@ for i in range(5):
 
 ## 四、配置连接信息
 
-在 `config.ini` 中填入你的集群信息（务必保持格式）：
+在 `config.ini` 中填入你的集群信息（务必保持格式），⚠️ 切勿把 API Key 提交到公开仓库。
 
 ```ini
 uri = https://<your-endpoint>
