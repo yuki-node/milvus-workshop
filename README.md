@@ -166,9 +166,12 @@
 
 **第四部分：Milvus 进阶 【TODO】**
 
-*   [安装部署Milvus监控运维] 
-*   [运维监控 vdb bench， birdwatcher] 
-*   [Milvus调优] 
+*   [** 4.1 Milvus 可观测性运维实战**](./ch4/ch4_1.ipynb)
+    *   **可观测性部署**：基于 Prometheus + Loki + Jaeger + Grafana 完整可观测性解决方案
+    *   **核心监控指标**：深入理解 Milvus 关键性能指标和健康状态
+    *   **告警配置指南**：告警策略和通知渠道配置
+*   [运维监控 vdb bench， birdwatcher] - 待完善 📝
+*   [Milvus调优] - 待完善 📝
 
 
 ----
