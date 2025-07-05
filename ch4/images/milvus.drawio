@@ -1,6 +1,6 @@
 <mxfile host="65bd71144e">
     <diagram name="Milvus可观测性架构图" id="milvus-observability-architecture">
-        <mxGraphModel dx="1103" dy="677" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1200" pageHeight="800" math="0" shadow="0">
+        <mxGraphModel dx="1434" dy="663" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1200" pageHeight="800" math="0" shadow="0">
             <root>
                 <mxCell id="0"/>
                 <mxCell id="1" parent="0"/>
@@ -52,7 +52,7 @@
                 <mxCell id="agent-layer" value="🔧 数据采集层" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FFF3E0;strokeColor=#FF9800;strokeWidth=2;fontSize=14;fontStyle=1;fontColor=#F57C00;verticalAlign=top;" parent="1" vertex="1">
                     <mxGeometry x="120" y="420" width="960" height="100" as="geometry"/>
                 </mxCell>
-                <mxCell id="node-exporter" value="Node Exporter&#xa;🖥️ 系统指标" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#4CAF50;strokeColor=none;fontColor=white;fontSize=11;shadow=1;" parent="1" vertex="1">
+                <mxCell id="node-exporter" value="Exporter&lt;br&gt;🖥️ 系统指标" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#4CAF50;strokeColor=none;fontColor=white;fontSize=11;shadow=1;" parent="1" vertex="1">
                     <mxGeometry x="173" y="450" width="120" height="50" as="geometry"/>
                 </mxCell>
                 <mxCell id="promtail" value="Promtail&#xa;📄 日志收集" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#4CAF50;strokeColor=none;fontColor=white;fontSize=11;shadow=1;" parent="1" vertex="1">
@@ -61,7 +61,7 @@
                 <mxCell id="jaeger-agent" value="Jaeger Agent&#xa;🕷️ 链路收集" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#4CAF50;strokeColor=none;fontColor=white;fontSize=11;shadow=1;" parent="1" vertex="1">
                     <mxGeometry x="569" y="450" width="120" height="50" as="geometry"/>
                 </mxCell>
-                <mxCell id="milvus-exporter" value="Milvus Exporter&#xa;📊 业务指标" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#4CAF50;strokeColor=none;fontColor=white;fontSize=11;shadow=1;" parent="1" vertex="1">
+                <mxCell id="milvus-exporter" value="Exporter&lt;br&gt;📊 业务指标" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#4CAF50;strokeColor=none;fontColor=white;fontSize=11;shadow=1;" parent="1" vertex="1">
                     <mxGeometry x="755" y="450" width="120" height="50" as="geometry"/>
                 </mxCell>
                 <mxCell id="milvus-layer" value="Milvus 分布式集群" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;strokeWidth=2;fontSize=14;fontStyle=1;verticalAlign=top;fontColor=#333333;" parent="1" vertex="1">
