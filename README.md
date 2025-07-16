@@ -1,3 +1,6 @@
+<div align="center">
+  <img src="ch4/images/milvus-logo.svg" alt="Milvus Logo" width="300">
+</div>
 
 **Milvus Workshop：从入门到应用**
 ----
