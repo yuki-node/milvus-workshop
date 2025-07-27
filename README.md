@@ -172,7 +172,13 @@
 *   [**4.1 Milvus 可观测性运维实战**](./ch4/ch4_1.ipynb)
     *   **可观测性部署**：基于 Prometheus + Loki + Jaeger + Grafana 完整可观测性解决方案
     *   **核心监控指标**：深入理解 Milvus 关键性能指标和健康状态
-*   **4.2 Milvus工具使用 VectorDBBench, birdwatcher** 【TODO】
+*   [**4.2 VectorDBBench 基准测试实战**](./ch4/ch4_2.ipynb)
+    *   **VectorDBBench 简介**
+    *   **部署与安装**
+    *   **Web 界面与功能**
+    *   **标准测试流程**
+    *   **结果解读**
+*   **4.2 Birdwatcher 工具** 【TODO】
 *   [**4.3 Milvus调优**](./ch4/ch4_3.ipynb)
     *   **Milvus社区问题汇总**
         *   内存：省一点，再省一点
