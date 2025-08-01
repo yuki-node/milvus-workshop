@@ -1,3 +1,6 @@
+<div align="center">
+  <img src="ch4/images/milvus-logo.svg" alt="Milvus Logo" width="300">
+</div>
 
 **Milvus Workshop：从入门到应用**
 ----
@@ -165,12 +168,18 @@
 ----------
 
 
-**第四部分：Milvus 进阶实战 【TODO】**
+**第四部分：Milvus 进阶实战**
 *   [**4.1 Milvus 可观测性运维实战**](./ch4/ch4_1.ipynb)
-    **可观测性部署**：基于 Prometheus + Loki + Jaeger + Grafana 完整可观测性解决方案
-    **核心监控指标**：深入理解 Milvus 关键性能指标和健康状态
-*   [运维监控 vdb bench, birdwatcher] 
-*   [**Milvus调优**](./ch4/ch4_3.ipynb)
+    *   **可观测性部署**：基于 Prometheus + Loki + Jaeger + Grafana 完整可观测性解决方案
+    *   **核心监控指标**：深入理解 Milvus 关键性能指标和健康状态
+*   [**4.2 VectorDBBench 基准测试实战**](./ch4/ch4_2.ipynb)
+    *   **VectorDBBench 简介**
+    *   **部署与安装**
+    *   **Web 界面与功能**
+    *   **标准测试流程**
+    *   **结果解读**
+*   **4.2 Birdwatcher 工具** 【TODO】
+*   [**4.3 Milvus调优**](./ch4/ch4_3.ipynb)
     *   **Milvus社区问题汇总**
         *   内存：省一点，再省一点
         *   插入：丝滑入库是影响开发体验的第一步
