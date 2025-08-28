@@ -4,8 +4,8 @@
 
 **Milvus Workshop: From Getting Started to Application**
 
-[![en](https://img.shields.io/badge/lang-en-red.svg)](https://github.com/richzw/milvus-workshop/edit/main/README.md)
-[![zh](https://img.shields.io/badge/lang-zh-yellow.svg)](https://github.com/richzw/milvus-workshop/edit/main/README-zh.md)
+[![en](https://img.shields.io/badge/lang-en-red.svg)](./README.md)
+[![zh](https://img.shields.io/badge/lang-zh-yellow.svg)](./README-zh.md)
 
 ----
 
