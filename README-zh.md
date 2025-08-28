@@ -4,7 +4,7 @@
 
 **Milvus Workshop：从入门到应用**
 
-[![en](https://img.shields.io/badge/lang-en-red.svg)](https://github.com/richzw/milvus-workshop/main/README.md)
+[![en](https://img.shields.io/badge/lang-en-red.svg)](./README.md)
 
 ----
 
