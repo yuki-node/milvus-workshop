@@ -3,6 +3,9 @@
 </div>
 
 **Milvus Workshop：从入门到应用**
+
+[![en](https://img.shields.io/badge/lang-en-red.svg)](https://github.com/richzw/milvus-workshop/edit/main/README.md)
+
 ----
 
 **Workshop 目标:**
