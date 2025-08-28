@@ -2,7 +2,11 @@
   <img src="ch4/images/milvus-logo.svg" alt="Milvus Logo" width="300">
 </div>
 
-**Milvus Workshop: From Getting Started to Application** [中文](./README-zh.md)
+**Milvus Workshop: From Getting Started to Application**
+
+[![en](https://img.shields.io/badge/lang-en-red.svg)](https://github.com/richzw/milvus-workshop/edit/main/README.md)
+[![zh](https://img.shields.io/badge/lang-zh-yellow.svg)](https://github.com/richzw/milvus-workshop/edit/main/README-zh.md)
+
 ----
 
 **Workshop Objectives:**
