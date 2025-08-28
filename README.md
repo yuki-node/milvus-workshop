@@ -2,7 +2,7 @@
   <img src="ch4/images/milvus-logo.svg" alt="Milvus Logo" width="300">
 </div>
 
-**Milvus Workshop: From Getting Started to Application**
+**Milvus Workshop: From Getting Started to Application** [中文](./README-zh.md)
 ----
 
 **Workshop Objectives:**
