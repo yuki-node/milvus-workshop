@@ -2,12 +2,9 @@
   <img src="ch4/images/milvus-logo.svg" alt="Milvus Logo" width="300">
 </div>
 
-**Milvus Workshop: From Getting Started to Application**
+# Milvus Workshop: From Getting Started to Application
 
-[![en](https://img.shields.io/badge/lang-en-red.svg)](./README.md)
 [![zh](https://img.shields.io/badge/lang-zh-yellow.svg)](./README-zh.md)
-
-----
 
 **Workshop Objectives:**
 *   Understand the concept of a vector database and its value in the AI field.
