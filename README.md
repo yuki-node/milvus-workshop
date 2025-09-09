@@ -149,7 +149,25 @@
     *   **Hands-on Exercise 2:** Try modifying the search parameters and observe the changes in the retrieval results.
     *   [TODO]: Add more RAG use cases or RAG best practices.
 
-*   [**3.3 Applying Milvus in AI Agents**](./ch3/ch3_3.ipynb)
+*   [**3.3 Applying Milvus in GraphRAG**](./ch3/ch3_3.ipynb)
+    *   **GraphRAG Overview:** Understanding Microsoft's GraphRAG approach that combines knowledge graphs with traditional RAG.
+    *   **GraphRAG vs Traditional RAG:** Comparison of retrieval strategies - similarity-based vs. graph structure-based.
+    *   **GraphRAG Workflow:** Entity/Relationship Extraction -> Knowledge Graph Construction -> Community Detection -> Hierarchical Summarization -> Vector Storage -> Intelligent Retrieval.
+    *   **Role of Milvus in GraphRAG:**
+        *   **Entity Storage:** Store entity embeddings with metadata for semantic entity search.
+        *   **Relationship Storage:** Store relationship embeddings to understand connections between entities.
+        *   **Community Summaries:** Store hierarchical community summaries for global search capabilities.
+    *   **Case Study / Code Walkthrough:**
+        *   Use LLM for entity and relationship extraction from documents.
+        *   Build knowledge graphs using NetworkX and detect communities.
+        *   Generate hierarchical community summaries.
+        *   Store entities, relationships, and community summaries as vectors in Milvus.
+        *   Implement intelligent query routing (local vs global search strategies).
+        *   Compare GraphRAG results with traditional RAG approaches.
+    *   **Advanced Features:** Multi-hop reasoning, structured context aggregation, and adaptive search strategies.
+    *   **Hands-on Exercise 3:** Extend the GraphRAG system with custom entity types and visualization improvements.
+
+*   [**3.4 Applying Milvus in AI Agents**](./ch3/ch3_4.ipynb)
     *   **AI Agent Architecture Overview:** Planning, Memory, Tools.
     *   **Role of Milvus in Agents:**
         *   **External Knowledge Base:** Stores external information that the Agent needs to query (similar to RAG).
@@ -159,9 +177,9 @@
         *   The Agent identifies the need for external information -> converts the query into a vector -> searches for relevant knowledge in Milvus -> obtains information -> continues planning.
         *   The Agent stores conversation fragment vectors -> searches for similar history at the start of a new conversation -> recalls relevant memories.
     *   Discussion: How Milvus empowers Agents to perform tasks more intelligently.
-    *   **Hands-on Exercise 3:** Hands-on with an AI Agent Demo.
+    *   **Hands-on Exercise 4:** Hands-on with an AI Agent Demo.
 
-*   [**3.4 Overview of Milvus Ecosystem Features**](./ch3/ch3_4.ipynb)
+*   [**3.5 Overview of Milvus Ecosystem Features**](./ch3/ch3_5.ipynb)
     *   Brief introduction to Milvus ecosystem tools (data synchronization VTS, Milvus CDC, Milvus Backup, VectorDBBench, DeepSearcher, MCP).
     *   Future applications of Milvus in other fields (recommendation systems, anomaly detection, etc.).
     *   Recommended learning resources (official documentation, community, GitHub).

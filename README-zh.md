@@ -151,7 +151,25 @@
     *   **Hands-on Exercise 2:** 尝试修改搜索参数，观察检索结果的变化。
     * 【TODO】: 添加更多的 RAG案例 或者 RAG best practice
 
-*   [**3.3 Milvus 在 AI Agent 中的应用**](./ch3/ch3_3.ipynb)
+*   [**3.3 Milvus 在 GraphRAG 中的应用**](./ch3/ch3_3.ipynb)
+    *   **GraphRAG 概述:** 理解微软 GraphRAG 方法，结合知识图谱与传统 RAG 的先进技术。
+    *   **GraphRAG vs 传统 RAG:** 检索策略对比 - 基于相似度检索 vs 基于图结构检索。
+    *   **GraphRAG 工作流程:** 实体/关系抽取 → 知识图谱构建 → 社区检测 → 分层总结 → 向量存储 → 智能检索。
+    *   **Milvus 在 GraphRAG 中的角色:**
+        *   **实体存储:** 存储实体嵌入及元数据，支持语义实体搜索。
+        *   **关系存储:** 存储关系嵌入，理解实体间的连接关系。
+        *   **社区摘要:** 存储分层社区摘要，支持全局搜索能力。
+    *   **案例演示/代码讲解:**
+        *   使用 LLM 从文档中抽取实体和关系。
+        *   使用 NetworkX 构建知识图谱并检测社区。
+        *   生成分层社区摘要。
+        *   将实体、关系、社区摘要作为向量存储在 Milvus 中。
+        *   实现智能查询路由（本地搜索 vs 全局搜索策略）。
+        *   对比 GraphRAG 与传统 RAG 的效果。
+    *   **高级特性:** 多跳推理、结构化上下文聚合、自适应搜索策略。
+    *   **Hands-on Exercise 3:** 扩展 GraphRAG 系统，添加自定义实体类型和可视化改进。
+
+*   [**3.4 Milvus 在 AI Agent 中的应用**](./ch3/ch3_4.ipynb)
     *   **AI Agent 架构概览：** Planning, Memory, Tools。
     *   **Milvus 在 Agent 中的角色：**
         *   **External Knowledge Base:** 存储 Agent 需要查询的外部信息 (类似于 RAG)。
@@ -161,9 +179,9 @@
         *   Agent 识别需要外部信息 -> 将查询转化为向量 -> 在 Milvus 中搜索相关知识 -> 获取信息 -> 继续规划。
         *   Agent 存储对话片段向量 -> 在新对话开始时搜索相似历史 -> 召回相关记忆。
     *   讨论：Milvus 如何赋能 Agent 更智能地执行任务。
-    *   **Hands-on Exercise 3:** 实操AI Agent Demo。
+    *   **Hands-on Exercise 4:** 实操AI Agent Demo。
 
-*   [**3.4 Milvus周边功能一览**](./ch3/ch3_4.ipynb)
+*   [**3.5 Milvus周边功能一览**](./ch3/ch3_5.ipynb)
     *   Milvus 周边工具简述 (数据同步VTS， Milvus CDC， Milvus Backup，VectorDBBench, DeepSearcher，MCP)。
     *   Milvus 在更多领域的应用前景 (推荐系统、异常检测等)。
     *   学习资源推荐 (官方文档、社区、Github)。
