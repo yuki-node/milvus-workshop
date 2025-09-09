@@ -2,200 +2,201 @@
   <img src="ch4/images/milvus-logo.svg" alt="Milvus Logo" width="300">
 </div>
 
-**Milvus Workshop：从入门到应用**
-----
+# Milvus Workshop: From Getting Started to Application
 
-**Workshop 目标:**
-*   理解向量数据库的概念及其在 AI 领域的价值。
-*   掌握 Milvus 的安装、基本架构和核心组件功能。
-*   能够使用 Milvus Python SDK 进行 Collection 管理、数据插入、向量搜索和数据查询等基础操作。
-*   实践 Milvus 在 图片搜索、 RAG (检索增强生成)、AI Agent 等实际应用中的作用和实现方式。
+[![zh](https://img.shields.io/badge/lang-zh-yellow.svg)](./README-zh.md)
 
-**环境准备 (参与者需提前完成或Workshop开始时提供指引):**
-*   安装 Docker 和 Docker Compose。
-*   安装 Python 3.9+。
-*   安装所需的 Python 库：`pymilvus`, `torch` (或 `transformers` 等用于生成向量), `langchain`, `langgraph`等。
-*   安装 Jupyter Notebook 或 JupyterLab。
+**Workshop Objectives:**
+*   Understand the concept of a vector database and its value in the AI field.
+*   Master the installation, basic architecture, and core component functions of Milvus.
+*   Be able to use the Milvus Python SDK for basic operations such as Collection management, data insertion, vector search, and data query.
+*   Practice the role and implementation of Milvus in practical applications like image search, RAG (Retrieval-Augmented Generation), and AI Agents.
 
----
-
-**第一部分：Milvus 初探 - 安装、概念与核心组件**
-
-*   [**1.1 向量数据库Milvus概览**](./ch1/ch1_1.ipynb)
-    *   什么是向量嵌入 (Vector Embedding)
-    *   为什么需要向量数据库？(对比传统数据库，ANN 搜索需求)
-    *   Milvus 是什么？(定位、核心特性、优势、社区概览)
-    *   Milvus 核心概念解析
-        *   Collection (集合)：类比关系型数据库的表。
-        *   Schema (模式)：定义 Collection 的结构 (Field: Primary Key, Vector Field, Scalar Fields)。
-        *   Entity (实体)：数据行，包含 ID、向量和标量属性。
-        *   Index (索引)：加速向量搜索的关键，不同索引类型介绍 (如 FLAT, IVF_FLAT, HNSW)。
-        *   Search/Query (搜索/查询)：ANN 搜索 vs. 基于标量字段的过滤查询。
-        *   Consistency Level (一致性级别)：不同级别对数据可见性的影响。
-        *   Partition (分区)：Collection 内的数据逻辑分组 (提高查询效率), 优化数据管理和查询性能。
-    *   Milvus部署：Lite vs Standalone vs Cluster 模式对比 (Workshop 使用 Standalone)
-
-*   [**1.2 Milvus 安装实战**](./ch1/ch1_2.ipynb)
-    *   介绍不同的安装方式 ( Docker Compose, Kubernetes, Cloud Services )。
-    *   **实操：Zilliz Cloud试用版** 
-        *   注册 Zilliz Cloud 账号。
-        *   创建 Milvus 实例。
-        *   连接 Milvus 实例 (使用 Python SDK 或 Milvus CLI)。
-    *   **实操：使用 Docker Compose 本地快速安装 Milvus Standalone （环境允许的前提）**
-        *   下载配置文件 (`milvus-standalone.yaml` 或 `milvus-cluster.yaml`)。
-        *   使用 `docker compose up -d` 命令启动。
-        *   解释 Docker Compose 文件中的关键服务和端口。
-    *   验证安装：
-        *   检查 Docker 容器状态。
-        *   Milvus SDKs 概览 (Python, Go, Java, Node.js, C# - 本次聚焦 Python)
-        *   使用 `milvus_cli` 或 Python SDK 连接测试。
-        *   介绍 WebUI：图形化管理工具。
-        *   介绍 Attu：Milvus 的可视化管理工具（安装与基本使用）。
-
-*   [**1.3 Milvus 核心架构与组件解析**](./ch1/ch1_3.ipynb) 
-    *   Milvus 的分布式架构概览 (解耦设计)。
-    *   核心组件功能详解：
-        *   **Proxy:** 请求入口，负载均衡。
-        *   **Root Coord:** 集群大脑，管理拓扑和任务。
-        *   **Data Coord:** 数据写入协调者，管理数据段。
-        *   **Query Coord:** 查询协调者，管理查询节点和索引加载。
-        *   **Index Coord:** 索引协调者，管理索引构建任务。
-        *   **Data Node:** 写入节点，处理数据写入和持久化。
-        *   **Query Node:** 查询节点，加载数据和索引，执行搜索/查询。
-        *   **Index Node:** 索引构建节点，执行索引构建任务。
-    *   Milvus 2.6 在架构中的优化 
-        *   **Streaming Node:** 实时数据流处理。
-    *   **Q&A & 小结**
+**Environment Preparation (Participants need to complete this in advance or guidance will be provided at the beginning of the workshop):**
+*   Install Docker and Docker Compose.
+*   Install Python 3.9+.
+*   Install the required Python libraries: `pymilvus`, `torch` (or `transformers` for generating vectors), `langchain`, `langgraph`, etc.
+*   Install Jupyter Notebook or JupyterLab.
 
 ---
 
-**第二部分：Milvus 基础操作 - 使用 Python SDK**
+**Part 1: Exploring Milvus - Installation, Concepts, and Core Components**
 
-*   [**2.1 连接 Milvus 并管理 Collections**](./ch2/ch2_1.ipynb)
-    *   **概念：Collection (集合)** 
-    *   **实操：定义 Collection Schema (结构)。**
-        *   Field 的概念 (主键 Field, Vector Field, Scalar Field)。
-        *   数据类型 (Int, Float, String, Array, JSON, FloatVector)。
-        *   如何定义主键 (Primary Key)。
-        *   如何定义 Vector Field (维度 Dimension)。
-        *   如何定义自动ID。
-    *   **实操：创建、删除、查看 Collection。**
-    *   **实操：加载 (Load) 和释放 (Release) Collection。** 
-    *   **Hands-on Exercise 1:** 创建一个简单的 Collection，定义几个 Scalar Field 和一个 Vector Field。
+*   [**1.1 Overview of Milvus Vector Database**](./ch1/ch1_1.ipynb)
+    *   What is a Vector Embedding?
+    *   Why do we need a vector database? (Comparison with traditional databases, the need for ANN search)
+    *   What is Milvus? (Positioning, core features, advantages, community overview)
+    *   Analysis of Milvus Core Concepts
+        *   Collection: Analogous to a table in a relational database.
+        *   Schema: Defines the structure of a Collection (Fields: Primary Key, Vector Field, Scalar Fields).
+        *   Entity: A row of data, containing an ID, a vector, and scalar attributes.
+        *   Index: Key to accelerating vector search, introduction to different index types (e.g., FLAT, IVF_FLAT, HNSW).
+        *   Search/Query: ANN search vs. filtered queries based on scalar fields.
+        *   Consistency Level: The impact of different levels on data visibility.
+        *   Partition: Logical grouping of data within a Collection (to improve query efficiency), optimizing data management and query performance.
+    *   Milvus Deployment: Comparison of Lite vs. Standalone vs. Cluster modes (The workshop will use Standalone).
 
-*   [**2.2 数据插入与管理**](./ch2/ch2_2.ipynb)
-    *   **概念：Entity (实体)**。
-    *   **概念：Partition (分区)** 。
-    *   **实操：准备数据进行插入。** 。
-    *   **实操：将数据插入 Collection (或指定 Partition)。**
-        *   解释数据格式要求。
-        *   批量插入的技巧。
-    *   **实操：删除数据 (按 ID 或过滤条件)。** 
-    *   **Hands-on Exercise 2:** 插入一批模拟数据到之前创建的 Collection 中，并尝试删除其中几条。
+*   [**1.2 Hands-on Milvus Installation**](./ch1/ch1_2.ipynb)
+    *   Introduction to different installation methods (Docker Compose, Kubernetes, Cloud Services).
+    *   **Hands-on: Zilliz Cloud Free Tier** 
+        *   Register for a Zilliz Cloud account.
+        *   Create a Milvus instance.
+        *   Connect to the Milvus instance (using the Python SDK or Milvus CLI).
+    *   **Hands-on: Quick Local Installation of Milvus Standalone using Docker Compose (if the environment permits)**
+        *   Download the configuration file (`milvus-standalone.yaml` or `milvus-cluster.yaml`).
+        *   Start with the `docker compose up -d` command.
+        *   Explain the key services and ports in the Docker Compose file.
+    *   Verify Installation:
+        *   Check the Docker container status.
+        *   Overview of Milvus SDKs (Python, Go, Java, Node.js, C# - this workshop focuses on Python).
+        *   Test the connection using `milvus_cli` or the Python SDK.
+        *   Introduction to the WebUI: A graphical management tool.
+        *   Introduction to Attu: Milvus's visualization management tool (installation and basic usage).
 
-*   [**2.3 索引的构建与管理**](./ch2/ch2_3.ipynb)
-    *   **概念：索引 (Index)** 
-    *   **核心：近似最近邻搜索 ( Annoyingly Near Neighbor Search, ANNS )。** 
-    *   介绍常见的向量索引类型及其适用场景 (简要)：
-        *   **FLAT:** 精确但慢。
-        *   **IVF_Flat:** 聚类 + 精确。
-        *   **IVF_SQ8:** 聚类 + 量化 (压缩)。
-        *   **IVF_PQ:** 聚类 + 乘积量化。
-        *   **HNSW:** 基于图的索引 (高性能，常用)。
-    *   介绍距离度量 ( Distance Metrics ): Euclidean distance (L2), Inner Product (IP), Cosine Similarity。
-    *   **实操：为 Vector Field 创建索引。**
-        *   选择索引类型和参数 (如 `nlist` for IVF, `M`, `efConstruction` for HNSW)。
-    *   **实操：查看索引状态。**
-    *   **Hands-on Exercise 3:** 为你的 Collection 中的 Vector Field 创建一个 HNSW 索引。
-
-*   [**2.4 向量相似度搜索 (Search) 与混合查询 (Query/Hybrid Search)**](./ch2/ch2_4.ipynb)
-    *   **概念：向量搜索 (Search)。**
-    *   **实操：执行向量搜索。**
-        *   准备搜索向量。
-        *   设置搜索参数 (如 `anns_field`, `param`, `limit`, `output_fields`)。
-        *   解释搜索结果 (`id`, `distance`, `fields`)。
-    *   **概念：数据查询 (Query)。** 
-    *   **实操：执行数据查询。** 
-    *   **概念：混合查询 (Hybrid Search)。** - 结合向量相似度和 Sparse-BM25 过滤条件进行搜索。
-    *   **实操：执行混合查询。** 
-    *   **Hands-on Exercise 4:** 执行一次简单的向量搜索，一次基于 Scalar Field 的查询，一次混合查询。
-    *   **Q&A & 小结**
+*   [**1.3 Analysis of Milvus Core Architecture and Components**](./ch1/ch1_3.ipynb) 
+    *   Overview of Milvus's distributed architecture (decoupled design).
+    *   Detailed explanation of core component functions:
+        *   **Proxy:** Request entry point, load balancing.
+        *   **Root Coord:** Cluster brain, manages topology and tasks.
+        *   **Data Coord:** Data ingestion coordinator, manages data segments.
+        *   **Query Coord:** Query coordinator, manages query nodes and index loading.
+        *   **Index Coord:** Index coordinator, manages index-building tasks.
+        *   **Data Node:** Ingestion node, handles data writing and persistence.
+        *   **Query Node:** Query node, loads data and indexes, executes searches/queries.
+        *   **Index Node:** Index-building node, executes index-building tasks.
+    *   Architectural Optimizations in Milvus 2.6
+        *   **Streaming Node:** Real-time data stream processing.
+    *   **Q&A & Summary**
 
 ---
 
-**第三部分：Milvus 应用实践 - 图片搜索，RAG 与 Agent 案例**
+**Part 2: Basic Milvus Operations - Using the Python SDK**
 
-*   [**3.1 Milvus 在图片搜索中的应用**](./ch3/ch3_1.ipynb)
-    *   **流程：** 图片加载 -> 图片向量化 (Embedding) -> 存储 -> 检索。
-    *   **Milvus 在图片搜索中的角色：** 存储图片特征向量，实现以图搜图 (Image-to-Image Search) 或以文搜图 (Text-to-Image Search)。
-    *   **案例演示/代码讲解：** 
-        *   使用预训练模型 (如 CLIP, ResNet等) 对图片数据集进行向量化。
-        *   将图片路径/ID 和向量插入 Milvus。
-        *   输入一张图片或一段描述文字，通过同一模型生成向量。
-        *   在 Milvus 中进行向量搜索，返回相似图片的 ID 或路径。
-    *   **Hands-on Exercise 1:** 实操对少量图片通过跨模态搜索 (CLIP)进行文搜图搜索。
+*   [**2.1 Connecting to Milvus and Managing Collections**](./ch2/ch2_1.ipynb)
+    *   **Concept: Collection** 
+    *   **Hands-on: Defining a Collection Schema.**
+        *   Concept of Fields (Primary Key Field, Vector Field, Scalar Field).
+        *   Data types (Int, Float, String, Array, JSON, FloatVector).
+        *   How to define a Primary Key.
+        *   How to define a Vector Field (Dimension).
+        *   How to define an auto-ID.
+    *   **Hands-on: Creating, deleting, and viewing a Collection.**
+    *   **Hands-on: Loading and releasing a Collection.** 
+    *   **Hands-on Exercise 1:** Create a simple Collection with several Scalar Fields and one Vector Field.
 
-*   [**3.2 Milvus 在 RAG (检索增强生成) 中的应用**](./ch3/ch3_2.ipynb)
-    *   **RAG 流程回顾：** 文档加载 -> 分块 (Chunking) -> 向量化 (Embedding) -> 存储 -> 检索 -> 生成。
-    *   **Milvus 在 RAG 中的角色：** 作为外部知识库，存储文本块及其向量，快速检索相关文本块。
-    *   **案例演示/代码讲解：** 
-        *   使用 LangChain 进行文档处理和向量化 (使用 Sentence Transformers, OpenAI embeddings 等)。
-        *   将文本块和元数据向量化之后 插入 Milvus。
-        *   接收用户问题，向量化。
-        *   使用 Milvus 进行向量搜索，检索相关的文本块。
-        *   将检索到的文本块作为上下文喂给 LLM 生成回答
-    *   讨论：如何优化 RAG 中的检索效果 (Chunk 大小、embedding 模型选择、混合搜索的使用)。
-    *   **Hands-on Exercise 2:** 尝试修改搜索参数，观察检索结果的变化。
-    * 【TODO】: 添加更多的 RAG案例 或者 RAG best practice
+*   [**2.2 Data Insertion and Management**](./ch2/ch2_2.ipynb)
+    *   **Concept: Entity**.
+    *   **Concept: Partition**.
+    *   **Hands-on: Preparing data for insertion.**
+    *   **Hands-on: Inserting data into a Collection (or a specific Partition).**
+        *   Explain data format requirements.
+        *   Techniques for batch insertion.
+    *   **Hands-on: Deleting data (by ID or filter conditions).** 
+    *   **Hands-on Exercise 2:** Insert a batch of mock data into the previously created Collection and try deleting some of it.
 
-*   [**3.3 Milvus 在 AI Agent 中的应用**](./ch3/ch3_3.ipynb)
-    *   **AI Agent 架构概览：** Planning, Memory, Tools。
-    *   **Milvus 在 Agent 中的角色：**
-        *   **External Knowledge Base:** 存储 Agent 需要查询的外部信息 (类似于 RAG)。
-        *   **Memory:** 存储 Agent 的对话历史、学习到的经验、规划步骤等 (以向量形式)。
-    *   **案例演示/代码讲解：** 
-        *   使用 LangGraph 实现一个 Agent
-        *   Agent 识别需要外部信息 -> 将查询转化为向量 -> 在 Milvus 中搜索相关知识 -> 获取信息 -> 继续规划。
-        *   Agent 存储对话片段向量 -> 在新对话开始时搜索相似历史 -> 召回相关记忆。
-    *   讨论：Milvus 如何赋能 Agent 更智能地执行任务。
-    *   **Hands-on Exercise 3:** 实操AI Agent Demo。
+*   [**2.3 Building and Managing Indexes**](./ch2/ch2_3.ipynb)
+    *   **Concept: Index** 
+    *   **Core Concept: Approximate Nearest Neighbor Search (ANNS).** 
+    *   Brief introduction to common vector index types and their use cases:
+        *   **FLAT:** Accurate but slow.
+        *   **IVF_FLAT:** Clustering + exact search.
+        *   **IVF_SQ8:** Clustering + quantization (compression).
+        *   **IVF_PQ:** Clustering + product quantization.
+        *   **HNSW:** Graph-based index (high performance, commonly used).
+    *   Introduction to Distance Metrics: Euclidean distance (L2), Inner Product (IP), Cosine Similarity.
+    *   **Hands-on: Creating an index for a Vector Field.**
+        *   Selecting the index type and parameters (e.g., `nlist` for IVF, `M`, `efConstruction` for HNSW).
+    *   **Hands-on: Checking the index status.**
+    *   **Hands-on Exercise 3:** Create an HNSW index for the Vector Field in your Collection.
 
-*   [**3.4 Milvus周边功能一览**](./ch3/ch3_4.ipynb)
-    *   Milvus 周边工具简述 (数据同步VTS， Milvus CDC， Milvus Backup，VectorDBBench, DeepSearcher，MCP)。
-    *   Milvus 在更多领域的应用前景 (推荐系统、异常检测等)。
-    *   学习资源推荐 (官方文档、社区、Github)。
+*   [**2.4 Vector Similarity Search, Query, and Hybrid Search**](./ch2/ch2_4.ipynb)
+    *   **Concept: Vector Search.**
+    *   **Hands-on: Executing a vector search.**
+        *   Prepare search vectors.
+        *   Set search parameters (e.g., `anns_field`, `param`, `limit`, `output_fields`).
+        *   Explain the search results (`id`, `distance`, `fields`).
+    *   **Concept: Data Query.** 
+    *   **Hands-on: Executing a data query.** 
+    *   **Concept: Hybrid Search.** - Combining vector similarity and Sparse-BM25 filtering conditions for searching.
+    *   **Hands-on: Executing a hybrid search.** 
+    *   **Hands-on Exercise 4:** Perform a simple vector search, a query based on a Scalar Field, and a hybrid search.
+    *   **Q&A & Summary**
+
+---
+
+**Part 3: Milvus Application Practice - Image Search, RAG, and Agent Use Cases**
+
+*   [**3.1 Applying Milvus in Image Search**](./ch3/ch3_1.ipynb)
+    *   **Process:** Image Loading -> Image Vectorization (Embedding) -> Storage -> Retrieval.
+    *   **Role of Milvus in Image Search:** Store image feature vectors to enable Image-to-Image Search or Text-to-Image Search.
+    *   **Case Study / Code Walkthrough:** 
+        *   Use a pre-trained model (like CLIP, ResNet, etc.) to vectorize an image dataset.
+        *   Insert image paths/IDs and vectors into Milvus.
+        *   Input an image or a text description, and generate a vector using the same model.
+        *   Perform a vector search in Milvus to return the IDs or paths of similar images.
+    *   **Hands-on Exercise 1:** Perform a text-to-image search on a small number of images using cross-modal search (CLIP).
+
+*   [**3.2 Applying Milvus in RAG (Retrieval-Augmented Generation)**](./ch3/ch3_2.ipynb)
+    *   **RAG Process Review:** Document Loading -> Chunking -> Vectorization (Embedding) -> Storage -> Retrieval -> Generation.
+    *   **Role of Milvus in RAG:** Acts as an external knowledge base to store text chunks and their vectors for fast retrieval of relevant text.
+    *   **Case Study / Code Walkthrough:** 
+        *   Use LangChain for document processing and vectorization (using Sentence Transformers, OpenAI embeddings, etc.).
+        *   Insert vectorized text chunks and metadata into Milvus.
+        *   Receive a user question and vectorize it.
+        *   Use Milvus to perform a vector search and retrieve relevant text chunks.
+        *   Feed the retrieved text chunks as context to an LLM to generate an answer.
+    *   Discussion: How to optimize retrieval effectiveness in RAG (Chunk size, choice of embedding model, use of hybrid search).
+    *   **Hands-on Exercise 2:** Try modifying the search parameters and observe the changes in the retrieval results.
+    *   [TODO]: Add more RAG use cases or RAG best practices.
+
+*   [**3.3 Applying Milvus in AI Agents**](./ch3/ch3_3.ipynb)
+    *   **AI Agent Architecture Overview:** Planning, Memory, Tools.
+    *   **Role of Milvus in Agents:**
+        *   **External Knowledge Base:** Stores external information that the Agent needs to query (similar to RAG).
+        *   **Memory:** Stores the Agent's dialogue history, learned experiences, planning steps, etc. (in vector form).
+    *   **Case Study / Code Walkthrough:** 
+        *   Implement an Agent using LangGraph.
+        *   The Agent identifies the need for external information -> converts the query into a vector -> searches for relevant knowledge in Milvus -> obtains information -> continues planning.
+        *   The Agent stores conversation fragment vectors -> searches for similar history at the start of a new conversation -> recalls relevant memories.
+    *   Discussion: How Milvus empowers Agents to perform tasks more intelligently.
+    *   **Hands-on Exercise 3:** Hands-on with an AI Agent Demo.
+
+*   [**3.4 Overview of Milvus Ecosystem Features**](./ch3/ch3_4.ipynb)
+    *   Brief introduction to Milvus ecosystem tools (data synchronization VTS, Milvus CDC, Milvus Backup, VectorDBBench, DeepSearcher, MCP).
+    *   Future applications of Milvus in other fields (recommendation systems, anomaly detection, etc.).
+    *   Recommended learning resources (official documentation, community, GitHub).
 
 ----------
 
 
-**第四部分：Milvus 进阶实战**
-*   [**4.1 Milvus 可观测性运维实战**](./ch4/ch4_1.ipynb)
-    *   **可观测性部署**：基于 Prometheus + Loki + Jaeger + Grafana 完整可观测性解决方案
-    *   **核心监控指标**：深入理解 Milvus 关键性能指标和健康状态
-*   [**4.2 VectorDBBench 基准测试实战**](./ch4/ch4_2.ipynb)
-    *   **VectorDBBench 简介**
-    *   **部署与安装**
-    *   **Web 界面与功能**
-    *   **标准测试流程**
-    *   **结果解读**
-*   **4.2 Birdwatcher 工具** 【TODO】
-*   [**4.3 Milvus调优**](./ch4/ch4_3.ipynb)
-    *   **Milvus社区问题汇总**
-        *   内存：省一点，再省一点
-        *   插入：丝滑入库是影响开发体验的第一步
-        *   配置：半数使用问题是配置问题
-    *   **优化 Milvus 性能**
-        *   合理的预计数据量，表数目大小，QPS 参数等指标
-        *   选择合适的索引类型和参数
-        *   合理选择流式插入和批量导入
-        *   谨慎使用标量过滤，删除特性等特性
-        *   部署监控并观察集群情况
-        *   一些常见的参数调整
-    *   **加速Milvus实践: 从资源配置到参数调优**
-        *   物理资源配置
-        *   与向量索引相关的参数调整
+**Part 4: Advanced Milvus Practice**
+*   [**4.1 Hands-on Milvus Observability and Operations**](./ch4/ch4_1.ipynb)
+    *   **Observability Deployment**: A complete observability solution based on Prometheus + Loki + Jaeger + Grafana.
+    *   **Core Monitoring Metrics**: In-depth understanding of Milvus's key performance indicators and health status.
+*   [**4.2 Hands-on Benchmarking with VectorDBBench**](./ch4/ch4_2.ipynb)
+    *   **Introduction to VectorDBBench**
+    *   **Deployment and Installation**
+    *   **Web Interface and Features**
+    *   **Benchmarking with Default Datasets**
+    *   **Benchmarking with Custom Datasets**
+    *   **Result Analysis**
+*   [**4.3 Milvus Performance Tuning**](./ch4/ch4_3.ipynb)
+    *   **Summary of Common Issues from the Milvus Community**
+        *   Memory: Saving as much as possible.
+        *   Insertion: Smooth data ingestion is the first step to a good developer experience.
+        *   Configuration: Half of all usage problems are configuration problems.
+    *   **Optimizing Milvus Performance**
+        *   Reasonably estimate metrics like data volume, number of tables, and QPS.
+        *   Choose appropriate index types and parameters.
+        *   Choose wisely between streaming insertion and bulk import.
+        *   Use features like scalar filtering and deletion with caution.
+        *   Deploy monitoring and observe the cluster status.
+        *   Some common parameter adjustments.
+    *   **Accelerating Milvus in Practice: From Resource Allocation to Parameter Tuning**
+        *   Physical resource configuration.
+        *   Parameter tuning related to vector indexes.
 
 
 ----
 
-本workshop涵盖了 Milvus 从安装、基础概念、核心操作到实际应用的完整流程，结合理论讲解和大量实操，能有效帮助新手快速掌握 Milvus 并应用于自己的项目中。
+This workshop covers the complete process of using Milvus, from installation, basic concepts, and core operations to practical applications. Combining theoretical explanations with extensive hands-on practice, it will effectively help newcomers quickly master Milvus and apply it in their own projects.
